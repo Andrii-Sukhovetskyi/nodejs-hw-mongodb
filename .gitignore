@@ -1,5 +1,8 @@
 /node_modules
 
+/temp/*
+/uploads/*
+
 .env
 
 .vscode
