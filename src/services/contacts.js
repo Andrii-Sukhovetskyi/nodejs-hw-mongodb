@@ -37,13 +37,11 @@ export const getContactById = async (contactId, userId) => {
   return contact;
 };
 
-export const createContact = async (payload, userId) => {
-  const contact = await contactsCollection.create({
-    ...payload,
-    userId,
-  });
+export const createContact = async (payload) => {
+  const contact = await contactsCollection.create(payload);
   return contact;
 };
+
 
 export const updateContact = async (contactId, payload, userId, options = {}) => {
   const rawResult = await contactsCollection.findOneAndUpdate(
