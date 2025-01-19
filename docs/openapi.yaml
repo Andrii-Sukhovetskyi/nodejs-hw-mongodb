@@ -11,12 +11,6 @@ tags:
     description: Endpoints for user authentication, including registration, login, and password reset.
   - name: Contacts
     description: Manage user contacts, such as creating, retrieving, updating, and deleting contact information.
-  - name: Users
-    description: Operations related to users, such as retrieving user details and updating user profiles.
-  - name: Email
-    description: Functionality for sending email notifications, such as password reset emails.
-  - name: Files
-    description: File upload and management, including storing and retrieving user or contact photos.
 servers:
   - url: https://hw4-validation-i4ud.onrender.com
 paths:
