@@ -1,0 +1,15 @@
+tags:
+  - Auth
+operationId: logout
+summary: User Logout
+description: Logs out the authenticated user by invalidating their session. If the relevant session cookie is provided, it will be invalidated. A 204 No Content response is returned regardless of cookie presence.
+security: []
+parameters:
+  - name: sessionId
+    in: cookie
+    schema:
+      type: string
+      example: sessionId=j%3A%227b5a9c2fd123ab890ef567a4%22; Path=/; Expires=Sun, 19 Feb 2025 10:12:33 GMT; HttpOnly
+responses:
+  '204':
+    description: Successfully logged out the user

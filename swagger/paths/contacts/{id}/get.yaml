@@ -1,0 +1,39 @@
+tags:
+  - Contacts
+operationId: getContact
+summary: Retrieve a Contact
+description: Fetches a contact by its unique identifier. Returns a 200 status with the contact details on success, or appropriate error responses for unauthorized access or if the contact is not found.
+security:
+  - bearerAuth: []
+parameters:
+  - name: id
+    in: path
+    required: true
+    schema:
+      type: string
+      example: 675bf7f7a015f4dfda532c59
+responses:
+  '200':
+    description: Successfully found a contact
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully found contact with id 675bf7f7a015f4dfda532c59!
+            data:
+              type: object
+              $ref: ../../../components/schemas/contact.yaml
+  '401':
+    $ref: ../../../components/responses/401.yaml
+  '404':
+    $ref: ../../../components/responses/contacts404.yaml

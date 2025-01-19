@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: ContactManager
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: Contacts app
+tags:
+  - name: Auth
+    description: Endpoints for user authentication, including registration, login, and password reset.
+  - name: Contacts
+    description: Manage user contacts, such as creating, retrieving, updating, and deleting contact information.
+  - name: Users
+    description: Operations related to users, such as retrieving user details and updating user profiles.
+  - name: Email
+    description: Functionality for sending email notifications, such as password reset emails.
+  - name: Files
+    description: File upload and management, including storing and retrieving user or contact photos.
+servers:
+  - url: https://hw4-validation-i4ud.onrender.com
+paths:
+  /contacts:
+    get:
+      $ref: ../swagger/paths/contacts/get.yaml
+    post:
+      $ref: ../swagger/paths/contacts/post.yaml
+  /contacts/{id}:
+    get:
+      $ref: ../swagger/paths/contacts/{id}/get.yaml
+    delete:
+      $ref: ../swagger/paths/contacts/{id}/delete.yaml
+    patch:
+      $ref: ../swagger/paths/contacts/{id}/patch.yaml
+  /auth/register:
+    post:
+      $ref: ../swagger/paths/auth/register/post.yaml
+  /auth/login:
+    post:
+      $ref: ../swagger/paths/auth/login/post.yaml
+  /auth/logout:
+    post:
+      $ref: ../swagger/paths/auth/logout/post.yaml
+  /auth/refresh:
+    post:
+      $ref: ../swagger/paths/auth/refresh/post.yaml
+  /auth/send-reset-email:
+    post:
+      $ref: ../swagger/paths/auth/send-reset-email/post.yaml
+  /auth/reset-pwd:
+    post:
+      $ref: ../swagger/paths/auth/reset-pwd/post.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

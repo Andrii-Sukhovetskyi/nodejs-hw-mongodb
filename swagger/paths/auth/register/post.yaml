@@ -1,0 +1,72 @@
+tags:
+  - Auth
+operationId: refresh
+summary: Refresh User Session
+description: Refreshes the user's session by validating the provided session and refresh token cookies. If valid, a new access token is returned. A 200 status code indicates a successful refresh, while a 401 status code indicates that the session was not found or the session token has expired.
+security: []
+parameters:
+  - name: sessionId
+    in: cookie
+    description: Session cookie
+    schema:
+      type: string
+      example: sessionId=j%3A%227b5a9c2fd123ab890ef567a4%22; Path=/; Expires=Sun, 19 Feb 2025 10:12:33 GMT; HttpOnly
+  - name: refreshToken
+    in: cookie
+    description: Refresh token cookie
+    schema:
+      type: string
+      example: refreshToken=lkGJhfDPB7yz3efjaJlmMGHlj4ziaQXOURJ9kEyB; Path=/; Expires=Sun, 19 Feb 2025 10:12:33 GMT; HttpOnly
+responses:
+  '200':
+    description: Successfully refreshed a session
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully refreshed a session!
+            data:
+              type: object
+              required:
+                - accessToken
+              properties:
+                accessToken:
+                  type: string
+                  example: Abc123XyZz+Pd6EfgH8J9Tkl+Ut1VwNz34XY0ZzA
+  '401':
+    description: Invalid session or expired token
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 401
+            message:
+              type: string
+              example: UnauthorizedError
+            data:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  enum:
+                    - Session not found
+                    - Session token expired

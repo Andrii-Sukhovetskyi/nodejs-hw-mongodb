@@ -1,0 +1,39 @@
+tags:
+  - Auth
+operationId: sendResetEmail
+summary: Request Password Reset Link
+description: Sends an email containing a link to reset the user's password. The user must provide their registered email address. A successful request returns a 200 status code, while a 404 status code indicates that the email address is not associated with any account.
+security: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - email
+        properties:
+          email:
+            type: string
+            example: johndoe@email.com
+responses:
+  '200':
+    description: Email successfully sent
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Reset password email has been successfully sent.
+            data:
+              type: object
+  '404':
+    $ref: ../../../components/responses/auth404.yaml
